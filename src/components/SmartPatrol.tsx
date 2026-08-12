@@ -1,4 +1,5 @@
-import Reveal from './Reveal'
+import { motion, useReducedMotion } from 'framer-motion'
+import { VIEWPORT, easeOut, fadeX, stagger } from '../lib/motion'
 
 const FEATURES = [
   '순찰 구역 GPS 자동 인증',
@@ -34,12 +35,21 @@ function formatToday(date = new Date()) {
 
 export default function SmartPatrol() {
   const today = formatToday()
+  const reduced = useReducedMotion()
+  const rows = stagger(reduced, { each: 0.3, delayChildren: 0.2 })
+  const row = fadeX(reduced, { x: -10, duration: 0.45 })
 
   return (
     <section id="patrol" className="bg-bg-base py-16 md:py-24">
-      <Reveal className="mx-auto max-w-7xl px-4 md:px-6">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
         {/* 375px에서 p-8은 목업 내부 폭을 너무 좁혀 순찰 장소가 잘린다. */}
-        <div className="rounded-2xl bg-primary p-6 md:p-12">
+        <motion.div
+          className="rounded-2xl bg-primary p-6 md:p-12"
+          initial={reduced ? undefined : { opacity: 0, scale: 0.97 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={VIEWPORT}
+          transition={easeOut(reduced, 0.8)}
+        >
           <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-14">
             {/* 텍스트 */}
             <div>
@@ -71,7 +81,7 @@ export default function SmartPatrol() {
             </div>
 
             {/* 순찰 현황 목업 */}
-            <div className="rounded-xl border border-white/10 bg-white/6 p-4 md:p-5">
+            <div className="rounded-xl border border-white/10 bg-white/6 p-4 backdrop-blur-sm md:p-5">
               <div className="flex items-center gap-2">
                 <span
                   aria-hidden="true"
@@ -85,10 +95,17 @@ export default function SmartPatrol() {
                 </span>
               </div>
 
-              <ul className="mt-4">
+              <motion.ul
+                className="mt-4"
+                variants={rows}
+                initial="hidden"
+                whileInView="visible"
+                viewport={VIEWPORT}
+              >
                 {PATROL_LOGS.map((log) => (
-                  <li
+                  <motion.li
                     key={log.time}
+                    variants={row}
                     className="flex items-center gap-2 border-b border-white/6 py-2 text-sm text-white/70 last:border-b-0 md:gap-3"
                   >
                     <span className="w-11 shrink-0 text-white/40 tabular-nums">
@@ -100,13 +117,13 @@ export default function SmartPatrol() {
                     >
                       {log.status}
                     </span>
-                  </li>
+                  </motion.li>
                 ))}
-              </ul>
+              </motion.ul>
             </div>
           </div>
-        </div>
-      </Reveal>
+        </motion.div>
+      </div>
     </section>
   )
 }

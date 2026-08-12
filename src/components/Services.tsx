@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
-import Reveal from './Reveal'
+import { motion, useReducedMotion } from 'framer-motion'
+import { VIEWPORT, fadeUp, stagger } from '../lib/motion'
 
 type IconProps = { className?: string }
 
@@ -94,10 +95,21 @@ const SERVICES: Service[] = [
 ]
 
 export default function Services() {
+  const reduced = useReducedMotion()
+  const header = fadeUp(reduced)
+  const list = stagger(reduced)
+  const card = fadeUp(reduced, { y: 30 })
+
   return (
     <section id="services" className="bg-bg-base py-16 md:py-24">
-      <Reveal className="mx-auto max-w-7xl px-4 md:px-6">
-        <div className="text-center">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <motion.div
+          className="text-center"
+          variants={header}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT}
+        >
           <p className="text-xs font-medium tracking-widest text-gold">
             OUR SERVICE
           </p>
@@ -107,16 +119,24 @@ export default function Services() {
           <p className="mt-4 text-sm text-text-light">
             경비·위생·주택관리를 통합 운영하여 효율적인 단지 관리를 실현합니다.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <motion.div
+          className="mt-12 grid gap-6 md:grid-cols-3"
+          variants={list}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT}
+        >
           {SERVICES.map((service) => (
-            <article
+            <motion.article
               key={service.title}
-              className="rounded-xl border border-line bg-white p-6 md:p-8"
+              variants={card}
+              /* border-t-2는 투명 상태로도 자리를 차지해 hover 시 레이아웃이 흔들리지 않는다. */
+              className="group rounded-xl border border-t-2 border-line border-t-transparent bg-white p-6 shadow-sm transition-[background-color,border-color,box-shadow] duration-300 hover:border-t-gold hover:bg-[#FFFDF9] hover:shadow-lg md:p-8"
             >
               <div
-                className={`flex h-12 w-12 items-center justify-center rounded-lg ${service.iconWrapClass}`}
+                className={`flex h-12 w-12 items-center justify-center rounded-lg transition-transform duration-200 group-hover:scale-110 ${service.iconWrapClass}`}
               >
                 {service.icon}
               </div>
@@ -138,10 +158,10 @@ export default function Services() {
                   </li>
                 ))}
               </ul>
-            </article>
+            </motion.article>
           ))}
-        </div>
-      </Reveal>
+        </motion.div>
+      </div>
     </section>
   )
 }

@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
-import Reveal from './Reveal'
+import { motion, useReducedMotion } from 'framer-motion'
+import { VIEWPORT, fadeUp, stagger } from '../lib/motion'
 
 const STEPS = [
   {
@@ -39,10 +40,21 @@ function ArrowIcon({ className }: { className?: string }) {
 }
 
 export default function Process() {
+  const reduced = useReducedMotion()
+  const header = fadeUp(reduced)
+  const list = stagger(reduced, { each: 0.2 })
+  const step = fadeUp(reduced, { y: 30 })
+
   return (
     <section id="process" className="bg-white py-16 md:py-24">
-      <Reveal className="mx-auto max-w-7xl px-4 md:px-6">
-        <div className="text-center">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <motion.div
+          className="text-center"
+          variants={header}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT}
+        >
           <p className="text-xs font-medium tracking-widest text-gold">
             PROCESS
           </p>
@@ -52,35 +64,42 @@ export default function Process() {
           <p className="mt-4 text-sm text-text-light">
             현장 발생 즉시 2단계 방문 상담으로 원인을 분석하고 해결합니다.
           </p>
-        </div>
+        </motion.div>
 
-        <ol className="mt-12 flex flex-col gap-5 md:flex-row md:items-start md:gap-4">
-          {STEPS.map((step, i) => (
-            <Fragment key={step.n}>
-              <li className="text-center md:flex-1">
-                <span className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-primary font-semibold text-white">
-                  {step.n}
+        <motion.ol
+          className="mt-12 flex flex-col gap-5 md:flex-row md:items-start md:gap-4"
+          variants={list}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT}
+        >
+          {STEPS.map((item, i) => (
+            <Fragment key={item.n}>
+              <motion.li variants={step} className="group text-center md:flex-1">
+                <span className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-primary font-semibold text-white transition-colors duration-300 group-hover:bg-gold">
+                  {item.n}
                 </span>
                 <h3 className="mt-4 font-semibold text-primary">
-                  {step.title}
+                  {item.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-text-light">
-                  {step.description}
+                  {item.description}
                 </p>
-              </li>
+              </motion.li>
 
               {i < STEPS.length - 1 && (
-                <li
+                <motion.li
                   aria-hidden="true"
+                  variants={step}
                   className="flex justify-center text-gold md:pt-2.5"
                 >
-                  <ArrowIcon className="h-5 w-5 rotate-90 md:rotate-0" />
-                </li>
+                  <ArrowIcon className="arrow-pulse h-5 w-5 rotate-90 md:rotate-0" />
+                </motion.li>
               )}
             </Fragment>
           ))}
-        </ol>
-      </Reveal>
+        </motion.ol>
+      </div>
     </section>
   )
 }

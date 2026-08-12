@@ -64,14 +64,25 @@ Tailwind v4 `@theme` 토큰은 `src/index.css`에 정의되어 있다.
 ```
 assets/            원본 자료 (한글 파일명 사진 원본, 순찰시스템.pptx) — gitignore, 로컬 전용
 public/images/     사이트에서 사용하는 이미지 (영문 파일명, 가로 최대 800px / JPEG q80)
-src/components/    섹션 컴포넌트 + Reveal.tsx(스크롤 진입 애니메이션 래퍼)
+src/components/    섹션 컴포넌트
 src/data/          정적 데이터 (complexes.ts, company.ts)
+src/lib/           motion.ts (framer-motion variants 헬퍼)
 ```
 
 ## 애니메이션 규칙
-- 스크롤 진입 애니메이션은 `Reveal`로 감싼다. 섹션 배경이 아니라 **콘텐츠 컨테이너**에
-  적용해야 배경 사이에 틈이 생기지 않는다.
-- Hero 카운터와 `Reveal` 모두 `prefers-reduced-motion: reduce`이면 애니메이션 없이 최종 상태로 표시한다.
+- 스크롤 진입 애니메이션은 **framer-motion**(`motion` 컴포넌트 + `whileInView`)을 쓴다.
+  variants는 `src/lib/motion.ts`의 `fadeUp` / `fadeX` / `stagger` 헬퍼로 만든다.
+- `viewport`는 공통 상수 `VIEWPORT`(`{ once: true, amount: 0.2 }`)를 쓴다 — 한 번만 실행.
+- `transform`과 `opacity`만 애니메이션한다. layout shift를 만드는 속성은 쓰지 않는다.
+  (예: hover 골드 라인은 `border-t-2 border-t-transparent` → `hover:border-t-gold`로,
+  두께를 항상 차지하게 해서 흔들림을 없앤다.)
+- **reduced motion**: 헬퍼에 `useReducedMotion()` 값을 넘기면 hidden 상태가 비고
+  duration이 0이 되어 애니메이션이 꺼진다. CSS 애니메이션(`.hero-mesh`, `.arrow-pulse`)은
+  framer-motion이 제어하지 못하므로 `index.css`의 `@media (prefers-reduced-motion: reduce)`에서 끈다.
+
+## Hero 배경 레이어 (index.css)
+`.hero-mesh`(60초 순환 그라디언트) → `.hero-grid`(격자) → `.hero-glow`(하단 골드 번짐)
+순으로 `absolute inset-0 -z-10`에 쌓는다. 섹션에 `relative isolate overflow-hidden` 필요.
 
 ## 자동 계산되는 값 (하드코딩 금지)
 - 경력 연수: `getYearsSinceFounding()` (src/data/company.ts) — Hero 카운터, About 제목

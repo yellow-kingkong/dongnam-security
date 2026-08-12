@@ -40,8 +40,85 @@ footer[id] {
   scroll-margin-top: calc(var(--nav-h) + 1rem);
 }
 
+/* ------------------------------------------------------------------ */
+/* Hero 배경 레이어                                                     */
+/* framer-motion이 아닌 CSS 애니메이션이므로 reduced-motion을 직접 처리한다. */
+/* ------------------------------------------------------------------ */
+
+/* 2) 느리게 순환하는 그라디언트 메시 (60초 주기) */
+@keyframes hero-mesh {
+  0% {
+    background-position: 0% 50%, 100% 50%, 50% 100%;
+  }
+  50% {
+    background-position: 100% 50%, 0% 50%, 50% 0%;
+  }
+  100% {
+    background-position: 0% 50%, 100% 50%, 50% 100%;
+  }
+}
+
+.hero-mesh {
+  background-image:
+    radial-gradient(circle at 50% 50%, #1B2A4A 0%, transparent 55%),
+    radial-gradient(circle at 50% 50%, #253756 0%, transparent 50%),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(200, 169, 110, 0.05) 0%,
+      transparent 55%
+    );
+  background-size: 180% 180%, 160% 160%, 200% 200%;
+  background-repeat: no-repeat;
+  animation: hero-mesh 60s ease-in-out infinite;
+  will-change: background-position;
+}
+
+/* 3) 미세한 격자 오버레이 */
+.hero-grid {
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.03) 0 1px,
+      transparent 1px 64px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.03) 0 1px,
+      transparent 1px 64px
+    );
+}
+
+/* 4) 하단 중앙에서 퍼지는 골드 빛 번짐 */
+.hero-glow {
+  background-image: radial-gradient(
+    ellipse 65% 55% at 50% 100%,
+    rgba(200, 169, 110, 0.03) 0%,
+    transparent 70%
+  );
+}
+
+/* Process 화살표 pulse (2초 주기) */
+@keyframes arrow-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.arrow-pulse {
+  animation: arrow-pulse 2s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .hero-mesh,
+  .arrow-pulse {
+    animation: none;
   }
 }
