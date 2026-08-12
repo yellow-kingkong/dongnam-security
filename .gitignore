@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# 원본 자료 (로컬 보관, 레포에는 포함하지 않음)
+assets
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

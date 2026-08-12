@@ -62,8 +62,8 @@ Tailwind v4 `@theme` 토큰은 `src/index.css`에 정의되어 있다.
 
 ## 폴더 구조
 ```
-assets/            원본 자료 (한글 파일명 사진 원본, 순찰시스템.pptx)
-public/images/     사이트에서 사용하는 이미지 (영문 파일명)
+assets/            원본 자료 (한글 파일명 사진 원본, 순찰시스템.pptx) — gitignore, 로컬 전용
+public/images/     사이트에서 사용하는 이미지 (영문 파일명, 가로 최대 800px / JPEG q80)
 src/components/    섹션 컴포넌트
 src/data/          정적 데이터 (complexes.ts)
 ```
