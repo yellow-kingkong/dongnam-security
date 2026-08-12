@@ -30,7 +30,7 @@ export default function Footer() {
 
         <div className="mt-8 border-t border-white/10 pt-5">
           <p className="text-xs text-white/30">
-            © 2025 (주)동남시큐리티. All rights reserved.
+            © {new Date().getFullYear()} (주)동남시큐리티. All rights reserved.
           </p>
         </div>
       </div>
