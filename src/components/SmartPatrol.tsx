@@ -22,7 +22,17 @@ const STATUS_CLASS: Record<PatrolLog['status'], string> = {
   '진행 중': 'bg-gold/20 text-gold',
 }
 
+/** 오늘 날짜를 YYYY.MM.DD 형태로 반환한다. */
+function formatToday(date = new Date()) {
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  return `${year}.${month}.${day}`
+}
+
 export default function SmartPatrol() {
+  const today = formatToday()
+
   return (
     <section id="patrol" className="bg-bg-base py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
@@ -67,9 +77,7 @@ export default function SmartPatrol() {
                 <span className="font-medium text-white/80">
                   오늘의 순찰 현황
                 </span>
-                <span className="ml-auto text-xs text-white/40">
-                  2026.08.12
-                </span>
+                <span className="ml-auto text-xs text-white/40">{today}</span>
               </div>
 
               <ul className="mt-4">
