@@ -1,10 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-
-const STATS = [
-  { value: 48000, unit: '+', label: '관리 세대 수' },
-  { value: 19, unit: '년', label: '아파트 관리 경력' },
-  { value: 2, unit: '단계', label: '민원 대응 체계' },
-]
+import { getYearsSinceFounding } from '../data/company'
 
 const DURATION = 1500
 
@@ -69,6 +64,12 @@ export default function Hero() {
   const statsRef = useRef<HTMLDListElement>(null)
   const [started, setStarted] = useState(false)
 
+  const stats = [
+    { value: 48000, unit: '+', label: '관리 세대 수' },
+    { value: getYearsSinceFounding(), unit: '년', label: '아파트 관리 경력' },
+    { value: 2, unit: '단계', label: '민원 대응 체계' },
+  ]
+
   // 카운터 영역이 뷰포트에 들어오면 한 번만 애니메이션을 시작한다.
   useEffect(() => {
     const el = statsRef.current
@@ -128,7 +129,7 @@ export default function Hero() {
           ref={statsRef}
           className="mx-auto grid max-w-7xl grid-cols-3 px-4 py-8 md:px-6 md:py-10"
         >
-          {STATS.map((stat) => (
+          {stats.map((stat) => (
             <Stat
               key={stat.label}
               value={stat.value}

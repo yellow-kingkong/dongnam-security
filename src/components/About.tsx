@@ -1,3 +1,5 @@
+import { getYearsSinceFounding } from '../data/company'
+
 /** 자본금 구체적 금액은 표시하지 않는다. */
 const HISTORY = [
   { year: '2024', description: '자본금 증자, 관리 단지 확대' },
@@ -14,7 +16,7 @@ export default function About() {
         <div className="text-center">
           <p className="text-xs font-medium tracking-widest text-gold">ABOUT</p>
           <h2 className="mt-3 text-2xl font-bold text-primary md:text-3xl">
-            19년 동안 쌓아온 기록
+            {getYearsSinceFounding()}년 동안 쌓아온 기록
           </h2>
         </div>
 
