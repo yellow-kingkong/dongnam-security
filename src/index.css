@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1B2A4A;
+  --color-gold: #C8A96E;
+  --color-gold-light: #E8D5B0;
+  --color-bg-base: #F8F6F3;
+  --color-card: #FFFFFF;
+  --color-line: #E5E2DD;
+  --color-text-dark: #1B2A4A;
+  --color-text-body: #3D4A5C;
+  --color-text-light: #7A8494;
+
+  --font-sans: "Pretendard Variable", Pretendard, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", "Apple SD Gothic Neo",
+    "Malgun Gothic", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg-base);
+  color: var(--color-text-body);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
