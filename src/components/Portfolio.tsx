@@ -1,9 +1,10 @@
 import { complexes } from '../data/complexes'
+import Reveal from './Reveal'
 
 export default function Portfolio() {
   return (
     <section id="portfolio" className="bg-white py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-4 md:px-6">
+      <Reveal className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="text-center">
           <p className="text-xs font-medium tracking-widest text-gold">
             PORTFOLIO
@@ -41,7 +42,7 @@ export default function Portfolio() {
         <p className="mt-8 text-center text-sm text-text-light">
           이 외에도 수도권 전역에서 다수의 단지를 관리하고 있습니다.
         </p>
-      </div>
+      </Reveal>
     </section>
   )
 }

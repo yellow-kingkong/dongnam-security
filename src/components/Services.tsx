@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import Reveal from './Reveal'
 
 type IconProps = { className?: string }
 
@@ -95,7 +96,7 @@ const SERVICES: Service[] = [
 export default function Services() {
   return (
     <section id="services" className="bg-bg-base py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-4 md:px-6">
+      <Reveal className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="text-center">
           <p className="text-xs font-medium tracking-widest text-gold">
             OUR SERVICE
@@ -140,7 +141,7 @@ export default function Services() {
             </article>
           ))}
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }

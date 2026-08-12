@@ -1,3 +1,5 @@
+import Reveal from './Reveal'
+
 const FEATURES = [
   '순찰 구역 GPS 자동 인증',
   '실시간 상황 보고 · 사진 첨부',
@@ -35,8 +37,9 @@ export default function SmartPatrol() {
 
   return (
     <section id="patrol" className="bg-bg-base py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-4 md:px-6">
-        <div className="rounded-2xl bg-primary p-8 md:p-12">
+      <Reveal className="mx-auto max-w-7xl px-4 md:px-6">
+        {/* 375px에서 p-8은 목업 내부 폭을 너무 좁혀 순찰 장소가 잘린다. */}
+        <div className="rounded-2xl bg-primary p-6 md:p-12">
           <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-14">
             {/* 텍스트 */}
             <div>
@@ -68,23 +71,25 @@ export default function SmartPatrol() {
             </div>
 
             {/* 순찰 현황 목업 */}
-            <div className="rounded-xl border border-white/10 bg-white/6 p-5">
+            <div className="rounded-xl border border-white/10 bg-white/6 p-4 md:p-5">
               <div className="flex items-center gap-2">
                 <span
                   aria-hidden="true"
-                  className="h-2 w-2 rounded-full bg-gold"
+                  className="h-2 w-2 shrink-0 rounded-full bg-gold"
                 />
-                <span className="font-medium text-white/80">
+                <span className="text-sm font-medium text-white/80 md:text-base">
                   오늘의 순찰 현황
                 </span>
-                <span className="ml-auto text-xs text-white/40">{today}</span>
+                <span className="ml-auto shrink-0 text-xs text-white/40">
+                  {today}
+                </span>
               </div>
 
               <ul className="mt-4">
                 {PATROL_LOGS.map((log) => (
                   <li
                     key={log.time}
-                    className="flex items-center gap-3 border-b border-white/6 py-2 text-sm text-white/70 last:border-b-0"
+                    className="flex items-center gap-2 border-b border-white/6 py-2 text-sm text-white/70 last:border-b-0 md:gap-3"
                   >
                     <span className="w-11 shrink-0 text-white/40 tabular-nums">
                       {log.time}
@@ -101,7 +106,7 @@ export default function SmartPatrol() {
             </div>
           </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }

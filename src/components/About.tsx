@@ -1,4 +1,5 @@
 import { getYearsSinceFounding } from '../data/company'
+import Reveal from './Reveal'
 
 /** 자본금 구체적 금액은 표시하지 않는다. */
 const HISTORY = [
@@ -12,7 +13,7 @@ const HISTORY = [
 export default function About() {
   return (
     <section id="about" className="bg-bg-base py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-4 md:px-6">
+      <Reveal className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="text-center">
           <p className="text-xs font-medium tracking-widest text-gold">ABOUT</p>
           <h2 className="mt-3 text-2xl font-bold text-primary md:text-3xl">
@@ -65,7 +66,7 @@ export default function About() {
             </figcaption>
           </figure>
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }

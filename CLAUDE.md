@@ -64,6 +64,16 @@ Tailwind v4 `@theme` 토큰은 `src/index.css`에 정의되어 있다.
 ```
 assets/            원본 자료 (한글 파일명 사진 원본, 순찰시스템.pptx) — gitignore, 로컬 전용
 public/images/     사이트에서 사용하는 이미지 (영문 파일명, 가로 최대 800px / JPEG q80)
-src/components/    섹션 컴포넌트
-src/data/          정적 데이터 (complexes.ts)
+src/components/    섹션 컴포넌트 + Reveal.tsx(스크롤 진입 애니메이션 래퍼)
+src/data/          정적 데이터 (complexes.ts, company.ts)
 ```
+
+## 애니메이션 규칙
+- 스크롤 진입 애니메이션은 `Reveal`로 감싼다. 섹션 배경이 아니라 **콘텐츠 컨테이너**에
+  적용해야 배경 사이에 틈이 생기지 않는다.
+- Hero 카운터와 `Reveal` 모두 `prefers-reduced-motion: reduce`이면 애니메이션 없이 최종 상태로 표시한다.
+
+## 자동 계산되는 값 (하드코딩 금지)
+- 경력 연수: `getYearsSinceFounding()` (src/data/company.ts) — Hero 카운터, About 제목
+- 저작권 연도: `new Date().getFullYear()` — Footer
+- 순찰 목업 날짜: `formatToday()` — SmartPatrol

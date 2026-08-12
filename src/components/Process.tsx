@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+import Reveal from './Reveal'
 
 const STEPS = [
   {
@@ -40,7 +41,7 @@ function ArrowIcon({ className }: { className?: string }) {
 export default function Process() {
   return (
     <section id="process" className="bg-white py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-4 md:px-6">
+      <Reveal className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="text-center">
           <p className="text-xs font-medium tracking-widest text-gold">
             PROCESS
@@ -79,7 +80,7 @@ export default function Process() {
             </Fragment>
           ))}
         </ol>
-      </div>
+      </Reveal>
     </section>
   )
 }

@@ -51,11 +51,12 @@ function Stat({
 
   return (
     <div className="text-center">
-      <dd className="text-3xl font-bold text-white tabular-nums">
+      {/* 모바일 3컬럼(≈114px)에 "48,000+"가 들어가도록 한 단계 줄인다. */}
+      <dd className="text-2xl font-bold text-white tabular-nums md:text-3xl">
         {current.toLocaleString('en-US')}
-        <span className="ml-0.5 text-lg text-gold">{unit}</span>
+        <span className="ml-0.5 text-base text-gold md:text-lg">{unit}</span>
       </dd>
-      <dt className="mt-2 text-sm text-white/45">{label}</dt>
+      <dt className="mt-2 text-xs text-white/45 md:text-sm">{label}</dt>
     </div>
   )
 }
@@ -103,13 +104,14 @@ export default function Hero() {
           SINCE 2007 · 아파트 경비 전문
         </span>
 
-        <h1 className="mt-7 text-3xl leading-tight font-bold md:text-5xl">
+        {/* 375px에서 text-3xl(30px)이면 12자 제목이 넘쳐 어색하게 줄바꿈된다. */}
+        <h1 className="mt-7 text-2xl leading-tight font-bold sm:text-3xl md:text-5xl">
           내 집이라는 마음가짐으로
           <br />
           <span className="text-gold">아파트를 지킵니다</span>
         </h1>
 
-        <p className="mt-5 text-white/60">
+        <p className="mt-5 text-sm text-white/60 md:text-base">
           아파트 경비 전문 기업 (주)동남시큐리티
         </p>
 
@@ -127,7 +129,7 @@ export default function Hero() {
       <div className="border-t border-white/10 bg-white/5">
         <dl
           ref={statsRef}
-          className="mx-auto grid max-w-7xl grid-cols-3 px-4 py-8 md:px-6 md:py-10"
+          className="mx-auto grid max-w-7xl grid-cols-3 gap-2 px-4 py-8 md:gap-6 md:px-6 md:py-10"
         >
           {stats.map((stat) => (
             <Stat

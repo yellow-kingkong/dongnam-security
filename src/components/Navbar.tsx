@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const NAV_LINKS = [
   { href: '#services', label: '서비스' },
@@ -29,9 +29,22 @@ function PhoneIcon({ className = 'h-4 w-4' }: { className?: string }) {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  // 스크롤이 시작되면 Navbar를 본문 위로 살짝 띄운다.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 0)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-white">
+    <header
+      className={`sticky top-0 z-50 border-b border-line bg-white transition-shadow duration-200 ${
+        scrolled ? 'shadow-sm' : 'shadow-none'
+      }`}
+    >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
         {/* 로고 */}
         <a href="#hero" className="flex items-center gap-2.5">
