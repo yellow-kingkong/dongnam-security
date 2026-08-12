@@ -24,7 +24,7 @@ export default function Portfolio() {
           <h2 className="mt-3 text-2xl font-bold text-primary md:text-3xl">
             주요 관리 단지
           </h2>
-          <p className="mt-4 text-sm text-text-light">
+          <p className="mx-auto mt-4 max-w-xl text-sm text-text-light">
             수도권 전역에서 아파트의 안전을 책임지고 있습니다.
           </p>
         </motion.div>
@@ -61,7 +61,7 @@ export default function Portfolio() {
           ))}
         </motion.ul>
 
-        <p className="mt-8 text-center text-sm text-text-light">
+        <p className="mx-auto mt-8 max-w-xl text-center text-sm text-text-light">
           이 외에도 수도권 전역에서 다수의 단지를 관리하고 있습니다.
         </p>
       </div>

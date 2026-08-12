@@ -59,9 +59,9 @@ export default function Process() {
             PROCESS
           </p>
           <h2 className="mt-3 text-2xl font-bold text-primary md:text-3xl">
-            민원은 미루지 않고, 사람이 직접 찾아갑니다
+            미루지 않고 사람이 직접 찾아가는 민원 대응
           </h2>
-          <p className="mt-4 text-sm text-text-light">
+          <p className="mx-auto mt-4 max-w-xl text-sm text-text-light">
             현장 발생 즉시 2단계 방문 상담으로 원인을 분석하고 해결합니다.
           </p>
         </motion.div>
