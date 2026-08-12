@@ -16,6 +16,11 @@
     "Malgun Gothic", sans-serif;
 }
 
+:root {
+  /* 고정 Navbar 높이. 앵커 스크롤 offset 계산에 쓰인다. */
+  --nav-h: 4rem;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -27,4 +32,16 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* 고정 Navbar에 가려지지 않도록 앵커 대상 섹션에 offset을 준다. */
+section[id],
+footer[id] {
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
