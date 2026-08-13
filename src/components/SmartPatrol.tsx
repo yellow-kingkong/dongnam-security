@@ -3,7 +3,7 @@ import { VIEWPORT, easeOut, fadeX, stagger } from '../lib/motion'
 
 /** 한 줄에 들어가도록 길이를 맞춘 명사형 항목. */
 const FEATURES = [
-  '순찰 구역 GPS 자동 인증',
+  '순찰 구역별 전자태그 인식',
   '실시간 상황 보고 및 사진 첨부',
   '근태·순찰 통계 자동 생성',
 ]
@@ -61,8 +61,8 @@ export default function SmartPatrol() {
                 근무를 기록으로 남기는 스마트순찰시스템
               </h2>
               <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/60 md:text-base">
-                GPS 기반 &lsquo;살다pro&rsquo; 앱으로 순찰 구역 진입 시 자동
-                인증하고, 관리자 웹사이트에서 실시간으로 확인할 수 있습니다.
+                전자순찰기기를 통해 순찰 구역별 태그를 인식하고, 관리자
+                웹사이트에서 실시간으로 확인할 수 있습니다.
               </p>
 
               <ul className="mt-7 space-y-3">

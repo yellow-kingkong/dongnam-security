@@ -24,4 +24,8 @@ export const complexes: Complex[] = [
   { id: 'hanil-u-and-i', name: '한일 유앤아이 아파트', image: '/images/hanil-u-and-i.jpg' },
   { id: 'howon-shindo-2-3', name: '호원 신도 2차·3차 아파트', image: '/images/howon-shindo-2-3.jpg' },
   { id: 'hoecheon-daekwang-rosebiang', name: '회천 대광로제비앙 아파트', image: '/images/hoecheon-daekwang-rosebiang.jpg' },
+  { id: 'sangye-jugong-14', name: '상계주공 14단지', image: '/images/sangye-jugong-14.jpg' },
+  { id: 'jangam-donga', name: '장암동아 아파트', image: '/images/jangam-donga.jpg' },
+  { id: 'songnae-jugong-3', name: '송내주공 3단지', image: '/images/songnae-jugong-3.jpg' },
+  { id: 'byeolnae-prugio', name: '별내푸르지오 아파트', image: '/images/byeolnae-prugio.jpg' },
 ]
