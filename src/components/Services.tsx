@@ -24,15 +24,7 @@ const SERVICES: Service[] = [
     title: '위생 · 환경관리',
     description:
       '청소, 소독, 조경, 분리수거장 관리 등 쾌적한 주거 환경을 만듭니다.',
-    tags: ['청소', '소독', '조경관리'],
-  },
-  {
-    number: '03',
-    label: 'MANAGEMENT',
-    title: '주택관리 · 지원',
-    description:
-      '시설 점검, 하자 보수 지원, 계약 및 보험 관리를 전문적으로 수행합니다.',
-    tags: ['시설점검', '하자보수', '계약관리'],
+    tags: ['청소'],
   },
 ]
 
@@ -56,7 +48,7 @@ export default function Services() {
             OUR SERVICE
           </p>
           <h2 className="mt-3 text-2xl font-bold text-primary md:text-3xl">
-            단지 운영에 필요한 세 가지를 한 곳에서
+            단지 운영에 필요한 것을 한 곳에서
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-sm text-text-light">
             경비·위생·주택관리를 통합 운영하여 효율적인 단지 관리를 실현합니다.
@@ -64,7 +56,7 @@ export default function Services() {
         </motion.div>
 
         <motion.div
-          className="mt-12 grid gap-6 md:grid-cols-3"
+          className="mt-12 grid gap-6 md:grid-cols-2"
           variants={list}
           initial="hidden"
           whileInView="visible"
