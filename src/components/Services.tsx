@@ -23,7 +23,7 @@ const SERVICES: Service[] = [
     label: 'ENVIRONMENT',
     title: '위생 · 환경관리',
     description:
-      '청소, 소독, 조경, 분리수거장 관리 등 쾌적한 주거 환경을 만듭니다.',
+      '청소, 분리수거장 관리 등 쾌적한 주거 환경을 만듭니다.',
     tags: ['청소'],
   },
 ]
@@ -51,7 +51,7 @@ export default function Services() {
             단지 운영에 필요한 것을 한 곳에서
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-sm text-text-light">
-            경비·위생·주택관리를 통합 운영하여 효율적인 단지 관리를 실현합니다.
+            경비·위생관리를 통합 운영하여 효율적인 단지 관리를 실현합니다.
           </p>
         </motion.div>
 
